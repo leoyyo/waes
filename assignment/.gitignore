@@ -1,4 +1,5 @@
 .idea/
+data/
 target/
 classes/
 .DS_Store

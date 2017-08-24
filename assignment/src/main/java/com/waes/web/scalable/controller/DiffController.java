@@ -8,19 +8,15 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Endpoint for diff two JSON base64 encoded binary data
  */
 @Path("/v1/diff")
+@Produces(MediaType.APPLICATION_JSON)
 public class DiffController {
 
     @Autowired
@@ -35,8 +31,7 @@ public class DiffController {
     @Path("/{id}/left")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response left(@PathParam("id") final Integer id, String input) {
-
-        return Response.status(200).build();
+        return Response.status(200).entity(diffService.inputLeftData(id,input)).build();
     }
 
     /**
@@ -47,8 +42,7 @@ public class DiffController {
     @Path("/{id}/right")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response right(@PathParam("id") final Integer id, String input) {
-
-        return Response.status(200).build();
+        return Response.status(200).entity(diffService.inputRightData(id,input)).build();
     }
 
     /**
@@ -58,15 +52,7 @@ public class DiffController {
     @GET
     @Path("/{id}")
     public Response diff(@PathParam("id") final Integer id) throws Exception {
-
-        List<String> lines = Arrays.asList("The first line", "The second line");
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("./diff_files/filename.txt"), "utf-8"))) {
-            writer.write("something");
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
-
-        return Response.status(200).build();
+        return Response.status(200).entity(diffService.findById(id)).build();
     }
+
 }
