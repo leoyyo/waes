@@ -2,11 +2,13 @@ package com.waes.web.scalable.persistence;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class for Left and Right data
  */
 @Entity
+@XmlRootElement
 public class LeftRightData {
 
     @Id

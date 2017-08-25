@@ -16,10 +16,22 @@ public class App {
         DiffService diffService = (DiffService) aplicationContext.getBean("diffService");
 
         LeftRightData data = new LeftRightData();
-        data.setId(2);
-        data.setLeft("This is not right!");
-        data.setRight("This is not left!");
+        data.setId(1);
+        data.setLeft("This is left!");
+        data.setRight("This is right!");
         diffService.update(data);
+
+        LeftRightData data2 = new LeftRightData();
+        data2.setId(2);
+        data2.setLeft("This is sparta!");
+        data2.setRight("This is true sparta!");
+        diffService.update(data2);
+
+        LeftRightData data3 = new LeftRightData();
+        data3.setId(3);
+        data3.setLeft("This is not right!");
+        data3.setRight("This is not left!");
+        diffService.update(data3);
         System.out.println("Data inserted!");
 
         LeftRightData search = diffService.findById(2);

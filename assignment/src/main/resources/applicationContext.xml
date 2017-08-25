@@ -15,14 +15,6 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
-    <!--bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="testDS" />
-        <property name="resourceRef" value="true"/>
-        <property name="lookupOnStartup" value="false"/>
-        <property name="proxyInterface" value="javax.sql.DataSource"/>
-        <property name="cache" value="false"/>
-    </bean -->
-
     <bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool">
         <constructor-arg>
             <bean class="org.h2.jdbcx.JdbcDataSource">

@@ -1,6 +1,7 @@
 package com.waes.web.scalable.service;
 
 import com.waes.web.scalable.persistence.LeftRightData;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,21 +13,30 @@ import javax.persistence.PersistenceContext;
  */
 @Transactional
 @Service
+@Component
 public class DiffService {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     public LeftRightData inputLeftData(final Integer id, String data) {
-        LeftRightData leftData = new LeftRightData();
-        leftData.setId(id);
+        System.out.println("Data got here: " + data);
+        LeftRightData leftData = findById(id);
+        if (leftData == null) {
+            leftData = new LeftRightData();
+            leftData.setId(id);
+        }
         leftData.setLeft(data);
+        System.out.println("and here!!");
         return update(leftData);
     }
 
     public LeftRightData inputRightData(final Integer id, String data) {
-        LeftRightData rightData = new LeftRightData();
-        rightData.setId(id);
+        LeftRightData rightData = findById(id);
+        if (rightData == null) {
+            rightData = new LeftRightData();
+            rightData.setId(id);
+        }
         rightData.setRight(data);
         return update(rightData);
     }
