@@ -34,7 +34,6 @@ public class DiffController {
     public Response left(@PathParam("id") final Integer id, String input) {
         JSONObject jsonObject = new JSONObject(input);
         int a = jsonObject.length();
-        System.out.println("Json object lenght is: " + a);
         return Response.status(200).entity(diffService.inputLeftData(id,input)).build();
     }
 
@@ -57,7 +56,7 @@ public class DiffController {
     @GET
     @Path("/{id}")
     public Response diff(@PathParam("id") final Integer id) throws Exception {
-        return Response.status(200).entity(diffService.findById(id)).build();
+        return Response.status(200).entity(diffService.returnLeftRightDiff(id)).build();
     }
 
 }
